@@ -7,7 +7,7 @@
                     <h4>Items</h4>
                 </div>
                 <div class="float-right">
-                    <router-link :to='{name:"categoryAdd"}' class="btn btn-primary" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></router-link>
+                    <router-link :to='{name:"additem"}' class="btn btn-outline-primary" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></router-link>
                 </div>
                 </div>
                 <div class="card-body">
@@ -16,25 +16,29 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Title</th>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Price</th>
                                     <th>Description</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody v-if="categories.length > 0">
-                                <tr v-for="(category,key) in categories" :key="key">
-                                    <td>{{ category.id }}</td>
-                                    <td>{{ category.title }}</td>
-                                    <td>{{ category.description }}</td>
+                            <tbody v-if="items.length > 0">
+                                <tr v-for="(item,key) in items" :key="key">
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.item_name }}</td>
+                                    <td>{{ item.item_code }}</td>
+                                    <td>{{ item.price }}</td>
+                                    <td>{{ item.item_details }}</td>
                                     <td>
-                                        <router-link :to='{name:"categoryEdit",params:{id:category.id}}' class="btn btn-success">Edit</router-link>
-                                        <button type="button" @click="deleteCategory(category.id)" class="btn btn-danger">Delete</button>
+                                        <router-link :to='{name:"editItem",params:{id:item.id}}' class="btn btn-outline-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></router-link>
+                                        <button type="button" @click="deleteItem(item.id)" class="btn btn-outline-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="4" align="center">No Categories Found.</td>
+                                    <td colspan="4" align="center">No Data Found.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -50,29 +54,42 @@ export default {
     name:"categories",
     data(){
         return {
-            categories:[]
+            items:[]
         }
     },
     mounted(){
-        this.getCategories()
+        this.getItems()
     },
     methods:{
-        async getCategories(){
+        async getItems(){
             await this.axios.get('/api/items').then(response=>{
-                this.categories = response.data
+                this.items = response.data
             }).catch(error=>{
                 console.log(error)
-                this.categories = []
+                this.items = []
             })
         },
-        deleteCategory(id){
-            if(confirm("Are you sure to delete this category ?")){
-                this.axios.delete(`/api/items/${id}`).then(response=>{
-                    this.getCategories()
-                }).catch(error=>{
-                    console.log(error)
-                })
-            }
+        deleteItem(id){
+            swal({
+                title: "Are you sure?",
+                text: "This item will be deleted permanently",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    this.axios.delete(`/api/items/${id}`).then(response=> {
+                        this.getItems()
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        });
+                    })
+
+                } else {
+                    swal("Item is safe!");
+                }
+            });
         }
     }
 }

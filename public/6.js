@@ -1,133 +1,13 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/List.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/List.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "categories",
-  data: function data() {
-    return {
-      items: []
-    };
-  },
-  mounted: function mounted() {
-    this.getItems();
-  },
-  methods: {
-    getItems: function getItems() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.axios.get('/api/items').then(function (response) {
-                  _this.items = response.data;
-                })["catch"](function (error) {
-                  console.log(error);
-                  _this.items = [];
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    deleteItem: function deleteItem(id) {
-      var _this2 = this;
-
-      swal({
-        title: "Are you sure?",
-        text: "This item will be deleted permanently",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true
-      }).then(function (willDelete) {
-        if (willDelete) {
-          _this2.axios["delete"]("/api/items/".concat(id)).then(function (response) {
-            _this2.getItems();
-
-            swal("Poof! Your imaginary file has been deleted!", {
-              icon: "success"
-            });
-          });
-        } else {
-          swal("Item is safe!");
-        }
-      });
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\ERP\\resources\\js\\components\\List.vue: Unexpected token, expected \",\" (87:18)\n\n\u001b[0m \u001b[90m 85 |\u001b[39m                         icon\u001b[33m:\u001b[39m \u001b[32m\"success\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 86 |\u001b[39m                     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 87 |\u001b[39m                 } \u001b[36melse\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 88 |\u001b[39m                     swal(\u001b[32m\"Your imaginary file is safe!\"\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 89 |\u001b[39m                 }\u001b[0m\n\u001b[0m \u001b[90m 90 |\u001b[39m             })\u001b[33m;\u001b[39m\u001b[0m\n    at instantiate (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:72:32)\n    at constructor (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:358:12)\n    at Parser.raise (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:3335:19)\n    at Parser.unexpected (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:3373:16)\n    at Parser.expect (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:4002:28)\n    at Parser.parseCallExpressionArguments (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12748:14)\n    at Parser.parseCoverCallAndAsyncArrowHead (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12663:29)\n    at Parser.parseSubscript (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12588:19)\n    at Parser.parseSubscripts (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12557:19)\n    at Parser.parseExprSubscripts (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12546:17)\n    at Parser.parseUpdate (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12519:21)\n    at Parser.parseMaybeUnary (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12490:23)\n    at Parser.parseMaybeUnaryOrPrivate (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12284:61)\n    at Parser.parseExprOps (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12291:23)\n    at Parser.parseMaybeConditional (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12261:23)\n    at Parser.parseMaybeAssign (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12214:21)\n    at Parser.parseExpressionBase (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12150:23)\n    at D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12144:39\n    at Parser.allowInAnd (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14236:16)\n    at Parser.parseExpression (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:12144:17)\n    at Parser.parseStatementContent (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14676:23)\n    at Parser.parseStatement (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14533:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:15176:25)\n    at Parser.parseBlockBody (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:15167:10)\n    at Parser.parseBlock (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:15151:10)\n    at Parser.parseStatementContent (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14617:21)\n    at Parser.parseStatement (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14533:17)\n    at Parser.parseIfStatement (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14931:28)\n    at Parser.parseStatementContent (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14584:21)\n    at Parser.parseStatement (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:14533:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:15176:25)\n    at Parser.parseBlockBody (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:15167:10)\n    at Parser.parseBlock (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:15151:10)\n    at Parser.parseFunctionBody (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:13841:24)\n    at Parser.parseArrowExpression (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:13813:10)\n    at Parser.parseParenAndDistinguishExpression (D:\\ERP\\node_modules\\@babel\\parser\\lib\\index.js:13311:12)");
 
 /***/ }),
 
@@ -160,7 +40,7 @@ var render = function () {
                 "router-link",
                 {
                   staticClass: "btn btn-outline-primary",
-                  attrs: { to: { name: "additem" }, title: "Add New" },
+                  attrs: { to: { name: "categoryAdd" }, title: "Add New" },
                 },
                 [
                   _c("i", {
@@ -284,7 +164,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("tr", [
       _c("td", { attrs: { colspan: "4", align: "center" } }, [
-        _vm._v("No Data Found."),
+        _vm._v("No Categories Found."),
       ]),
     ])
   },

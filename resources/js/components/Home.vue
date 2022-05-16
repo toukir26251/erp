@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-body card-data-view">
 
-            
+
                 </div>
             </div>
         </div>
@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body card-data-view">
 
-            
+
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-body card-data-view">
 
-            
+
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-body card-data-view">
 
-            
+
                 </div>
             </div>
         </div>

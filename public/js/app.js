@@ -2056,7 +2056,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      axios.post('/api/logout').then(function () {
+        localStorage.clear();
+
+        _this.$router.push({
+          name: 'home'
+        });
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -19784,27 +19804,22 @@ var render = function () {
                 "router-link",
                 {
                   staticClass: "nav-item nav-link",
-                  attrs: { "exact-active-class": "active", to: "/" },
+                  attrs: { "exact-active-class": "active", to: "/home" },
                 },
-                [_vm._v("Home")]
+                [
+                  _c("i", {
+                    staticClass: "fa fa-home",
+                    attrs: { "aria-hidden": "true" },
+                  }),
+                  _vm._v(" Home"),
+                ]
               ),
             ],
             1
           ),
           _vm._v(" "),
           _c("li", [
-            _c(
-              "a",
-              {
-                staticClass: "dropdown-toggle",
-                attrs: {
-                  href: "#pageSubmenu",
-                  "data-toggle": "collapse",
-                  "aria-expanded": "false",
-                },
-              },
-              [_vm._v("Items")]
-            ),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "ul",
@@ -19822,14 +19837,66 @@ var render = function () {
                         staticClass: "nav-item nav-link",
                         attrs: {
                           "exact-active-class": "active",
-                          to: "/category",
+                          to: "/additem",
                         },
                       },
-                      [_vm._v("All Items")]
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-plus-circle",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" Add Items"),
+                      ]
                     ),
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-item nav-link",
+                        attrs: {
+                          "exact-active-class": "active",
+                          to: "/itemlist",
+                        },
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-list",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v("\n                        All Items"),
+                      ]
+                    ),
+                  ],
+                  1
+                ),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { role: "button" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.logout.apply(null, arguments)
+                  },
+                },
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-sign-out",
+                  attrs: { "aria-hidden": "true" },
+                }),
+                _vm._v(" Logout"),
               ]
             ),
           ]),
@@ -19847,7 +19914,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("nav", { staticClass: "navbar navbar-expand-lg" }, [
       _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-        _vm._v("Navbar"),
+        _vm._v("ERP Mini"),
       ]),
       _vm._v(" "),
       _c(
@@ -19864,6 +19931,26 @@ var staticRenderFns = [
         ]
       ),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: {
+          href: "#pageSubmenu",
+          "data-toggle": "collapse",
+          "aria-expanded": "false",
+        },
+      },
+      [
+        _c("i", { staticClass: "fa fa-th", attrs: { "aria-hidden": "true" } }),
+        _vm._v(" Items"),
+      ]
+    )
   },
 ]
 render._withStripped = true
@@ -35450,23 +35537,124 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
+var Welcome = function Welcome() {
+  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue"));
+};
+
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
 };
 
 var ItemList = function ItemList() {
-  return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
 };
 
+var Login = function Login() {
+  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/Login.vue */ "./resources/js/components/Login.vue"));
+};
+
+var AddItem = function AddItem() {
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/AddItem.vue */ "./resources/js/components/AddItem.vue"));
+};
+
+var EditItem = function EditItem() {
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./components/EditItem.vue */ "./resources/js/components/EditItem.vue"));
+}; // var token = window.localStorage.getItem('token');
+// console.log(token);
+
+
 var routes = [{
-  name: 'home',
+  name: 'welcome',
   path: '/',
-  component: Home
+  component: Welcome
+}, {
+  name: 'home',
+  path: '/home',
+  component: Home,
+  beforeEnter: function beforeEnter(to, from, next) {
+    axios.get('/api/authenticated', {
+      headers: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
+    }).then(function () {
+      next();
+    })["catch"](function () {
+      return next({
+        name: 'login'
+      });
+    });
+  }
 }, {
   name: 'itemList',
-  path: '/category',
-  component: ItemList
+  path: '/itemlist',
+  component: ItemList,
+  beforeEnter: function beforeEnter(to, from, next) {
+    axios.get('/api/authenticated', {
+      headers: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
+    }).then(function () {
+      next();
+    })["catch"](function () {
+      return next({
+        name: 'login'
+      });
+    });
+  }
+}, {
+  name: 'editItem',
+  path: '/item/:id/edit',
+  component: EditItem,
+  beforeEnter: function beforeEnter(to, from, next) {
+    axios.get('/api/authenticated', {
+      headers: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
+    }).then(function () {
+      next();
+    })["catch"](function () {
+      return next({
+        name: 'login'
+      });
+    });
+  }
+}, {
+  name: 'additem',
+  path: '/additem',
+  component: AddItem,
+  beforeEnter: function beforeEnter(to, from, next) {
+    axios.get('/api/authenticated', {
+      headers: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
+    }).then(function () {
+      next();
+    })["catch"](function () {
+      return next({
+        name: 'login'
+      });
+    });
+  }
+}, {
+  name: 'login',
+  path: '/login',
+  component: Login
 }];
+
+var ifAuthenticated = function ifAuthenticated(to, from, next) {
+  if (localStorage.getItem(token)) {
+    next();
+    return;
+  }
+
+  router.push({
+    name: 'login',
+    params: {
+      returnTo: to.path,
+      query: to.query
+    }
+  });
+};
 
 /***/ }),
 

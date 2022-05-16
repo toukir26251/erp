@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -36,7 +37,25 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'itemname' => ['required'],
+            'itemprice' => ['required'],
+            'itemcode' => ['required'],
+        ]);
+
+        $item = Item::create([
+            "item_code" => $request->itemcode,
+            "item_name" => $request->itemname,
+            "item_details" => $request->itemdetails,
+            "price" => $request->itemprice
+        ]);
+
+        if($item) {
+            return response()->json(["success" => true, "message" => "Saved Successfully"]);
+        }
+        else{
+            return response()->json(["success"=>false,"message"=>"Something went wrong!"]);
+        }
     }
 
     /**
@@ -45,9 +64,21 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show($item)
     {
-        //
+        $item = Item::where("id",$item)->first();
+
+        if($item){
+            return response()->json(["success"=>true,"data"=>[
+                    "itemname"=>$item->item_name,
+                    "itemcode"=>$item->item_code,
+                    "itemdetails"=>$item->item_details,
+                    "itemprice"=>$item->price,
+                ]
+            ]);
+        }else{
+            return response()->json(["success"=>false,"message"=>"Something went wrong!"]);
+        }
     }
 
     /**
@@ -58,7 +89,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+
     }
 
     /**
@@ -68,9 +99,27 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $item)
     {
-        //
+        $request->validate([
+            'itemname' => ['required'],
+            'itemprice' => ['required'],
+            'itemcode' => ['required'],
+        ]);
+
+        $item = Item::where('id',$item)->update([
+            "item_code" => $request->itemcode,
+            "item_name" => $request->itemname,
+            "item_details" => $request->itemdetails,
+            "price" => $request->itemprice
+        ]);
+
+        if($item) {
+            return response()->json(["success" => true, "message" => "Saved Successfully"]);
+        }
+        else{
+            return response()->json(["success"=>false,"message"=>"Something went wrong!"]);
+        }
     }
 
     /**
@@ -79,8 +128,12 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy($item)
     {
-        //
+        Item::where('id',$item)->delete();
+        return response()->json([
+            "success"=>true,
+            'message'=>'Deleted Successfully!!'
+        ]);
     }
 }

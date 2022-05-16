@@ -17,7 +17,9 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('item_code');
             $table->string('item_name');
+            $table->string('price');
             $table->string('item_details')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
