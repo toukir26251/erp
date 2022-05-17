@@ -144,7 +144,7 @@ var render = function () {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-6 mb-2" }, [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Title")]),
+                    _c("label", [_vm._v("Name")]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [

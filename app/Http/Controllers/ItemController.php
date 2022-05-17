@@ -31,6 +31,11 @@ class ItemController extends Controller
 //        return response()->json($items);
     }
 
+    public function getAllItems(){
+        $items = Item::get();
+        return response()->json($items);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

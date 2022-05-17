@@ -44,9 +44,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/api/login', this.form).then(function (res) {
-        localStorage.setItem('token', res.data);
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user', res.data.user);
         _this.alerts = true;
-        console.log(window.localStorage.getItem('token'), "Token");
+        console.log(res.token);
 
         _this.$router.push({
           name: "home"

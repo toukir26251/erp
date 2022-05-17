@@ -26,6 +26,18 @@
                 </ul>
             </li>
             <li>
+                <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cart-plus" aria-hidden="true"></i> Store</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu1">
+                    <li>
+                        <router-link exact-active-class="active" to="/storereceive" class="nav-item nav-link"><i class="fa fa-plus-circle" aria-hidden="true"></i> Receive Items</router-link>
+                    </li>
+<!--                    <li>-->
+<!--                        <router-link exact-active-class="active" to="/itemlist" class="nav-item nav-link"><i class="fa fa-list" aria-hidden="true"></i>-->
+<!--                            All Receives</router-link>-->
+<!--                    </li>-->
+                </ul>
+            </li>
+            <li>
                 <a role="button" @click.prevent="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
             </li>
         </ul>

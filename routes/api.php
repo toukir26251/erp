@@ -28,4 +28,7 @@ Route::post('register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
 
-Route::resource('items',"ItemController")->only(['index','store','show','update','destroy']);
+Route::resource('items',"ItemController");
+Route::get('getallitems',"ItemController@getAllItems");
+
+Route::resource('store',"StoreController");

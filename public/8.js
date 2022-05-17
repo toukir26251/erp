@@ -1,13 +1,146 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[8],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/StoreReceive.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/StoreReceive.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: E:\\Personal\\erp\\resources\\js\\components\\StoreReceive.vue: Unterminated string constant. (48:48)\n\n\u001b[0m \u001b[90m 46 |\u001b[39m                     itemid \u001b[33m:\u001b[39m []\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 47 |\u001b[39m                     qnt \u001b[33m:\u001b[39m [\u001b[35m1\u001b[39m]\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m                     token\u001b[33m:\u001b[39m localStorage\u001b[33m.\u001b[39mgetItem(\u001b[32m'token),\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 49 |\u001b[39m                     user\u001b[33m:\u001b[39m localStorage\u001b[33m.\u001b[39mgetItem(\u001b[32m'user'\u001b[39m)\u001b[0m\n\u001b[0m \u001b[90m 50 |\u001b[39m                 }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 51 |\u001b[39m             allItems\u001b[33m:\u001b[39m[]\u001b[0m\n    at instantiate (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:72:32)\n    at constructor (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:358:12)\n    at Parser.raise (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:3335:19)\n    at Parser.readString (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:3042:20)\n    at Parser.getTokenFromCode (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:2617:14)\n    at Parser.nextToken (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:2019:10)\n    at Parser.next (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:1923:10)\n    at Parser.parseCoverCallAndAsyncArrowHead (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12643:10)\n    at Parser.parseSubscript (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12588:19)\n    at Parser.parseSubscripts (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12557:19)\n    at Parser.parseExprSubscripts (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12546:17)\n    at Parser.parseUpdate (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12519:21)\n    at Parser.parseMaybeUnary (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12490:23)\n    at Parser.parseMaybeUnaryOrPrivate (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12284:61)\n    at Parser.parseExprOps (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12291:23)\n    at Parser.parseMaybeConditional (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12261:23)\n    at Parser.parseMaybeAssign (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12214:21)\n    at E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12172:39\n    at Parser.allowInAnd (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:14242:12)\n    at Parser.parseMaybeAssignAllowIn (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12172:17)\n    at Parser.parseObjectProperty (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:13659:101)\n    at Parser.parseObjPropValue (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:13692:100)\n    at Parser.parsePropertyDefinition (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:13609:10)\n    at Parser.parseObjectLike (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:13499:21)\n    at Parser.parseExprAtom (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12890:23)\n    at Parser.parseExprSubscripts (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12540:23)\n    at Parser.parseUpdate (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12519:21)\n    at Parser.parseMaybeUnary (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12490:23)\n    at Parser.parseMaybeUnaryOrPrivate (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12284:61)\n    at Parser.parseExprOps (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12291:23)\n    at Parser.parseMaybeConditional (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12261:23)\n    at Parser.parseMaybeAssign (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12214:21)\n    at E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12172:39\n    at Parser.allowInAnd (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:14242:12)\n    at Parser.parseMaybeAssignAllowIn (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:12172:17)\n    at Parser.parseObjectProperty (E:\\Personal\\erp\\node_modules\\@babel\\parser\\lib\\index.js:13659:101)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      items: {
+        itemid: [],
+        qnt: [1],
+        token: localStorage.getItem('token'),
+        user: localStorage.getItem('user')
+      },
+      allItems: []
+    };
+  },
+  mounted: function mounted() {
+    this.getAllItems();
+  },
+  methods: {
+    addMoreItem: function addMoreItem() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this.items.qnt.push(1);
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    getAllItems: function getAllItems() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.axios.get('/api/getallitems').then(function (response) {
+                  _this2.allItems = response.data;
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this2.allItems = [];
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    submitReceive: function submitReceive() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.axios.post('/api/store', _this3.items).then(function (response) {
+                  // this.$router.push({name:"itemList"})
+                  swal("Updated!", "Change saved!", "success");
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  }
+});
 
 /***/ }),
 

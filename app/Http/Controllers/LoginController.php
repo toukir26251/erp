@@ -17,7 +17,11 @@ class LoginController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))){
             $user = Auth::user();
-            return $user->createToken($request->email)->plainTextToken;
+            return response()->json([
+                "success"=>true,
+                "user"=>$user->id,
+                "token"=>$user->createToken($request->email)->plainTextToken
+            ]);
         }
         throw ValidationException::withMessages([
             'email' =>['The provided credentials are incorect.']

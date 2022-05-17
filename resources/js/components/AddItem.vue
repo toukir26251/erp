@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-6 mb-2">
                                 <div class="form-group">
-                                    <label>Title</label>
+                                    <label>Name</label>
                                     <input type="text" class="form-control" v-model="item.itemname">
                                 </div>
                             </div>

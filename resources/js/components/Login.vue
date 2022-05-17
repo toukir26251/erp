@@ -32,9 +32,10 @@ export default {
     methods:{
         loginUser(){
             axios.post('/api/login', this.form).then((res) =>{
-                localStorage.setItem('token', res.data);
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('user', res.data.user);
                 this.alerts = true;
-                console.log(window.localStorage.getItem('token'),"Token");
+                console.log(res.token);
                 this.$router.push({ name: "home"});
             }).catch((error) =>{
                 this.errors = error.response.data.errors;

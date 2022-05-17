@@ -2062,6 +2062,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -37836,7 +37848,44 @@ var render = function () {
                           staticClass: "fa fa-list",
                           attrs: { "aria-hidden": "true" },
                         }),
-                        _vm._v("\n                        All Items"),
+                        _vm._v("\n                            All Items"),
+                      ]
+                    ),
+                  ],
+                  1
+                ),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "ul",
+              {
+                staticClass: "collapse list-unstyled",
+                attrs: { id: "pageSubmenu1" },
+              },
+              [
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-item nav-link",
+                        attrs: {
+                          "exact-active-class": "active",
+                          to: "/storereceive",
+                        },
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-plus-circle",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" Receive Items"),
                       ]
                     ),
                   ],
@@ -37921,6 +37970,29 @@ var staticRenderFns = [
       [
         _c("i", { staticClass: "fa fa-th", attrs: { "aria-hidden": "true" } }),
         _vm._v(" Items"),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: {
+          href: "#pageSubmenu1",
+          "data-toggle": "collapse",
+          "aria-expanded": "false",
+        },
+      },
+      [
+        _c("i", {
+          staticClass: "fa fa-cart-plus",
+          attrs: { "aria-hidden": "true" },
+        }),
+        _vm._v(" Store"),
       ]
     )
   },
@@ -53518,11 +53590,11 @@ var Welcome = function Welcome() {
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
 };
 
 var ItemList = function ItemList() {
-  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
 };
 
 var Login = function Login() {
@@ -53530,11 +53602,15 @@ var Login = function Login() {
 };
 
 var AddItem = function AddItem() {
-  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/AddItem.vue */ "./resources/js/components/AddItem.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/AddItem.vue */ "./resources/js/components/AddItem.vue"));
 };
 
 var EditItem = function EditItem() {
-  return Promise.all(/*! import() */[__webpack_require__.e(7), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/EditItem.vue */ "./resources/js/components/EditItem.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/EditItem.vue */ "./resources/js/components/EditItem.vue"));
+};
+
+var StoreReceive = function StoreReceive() {
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./components/StoreReceive.vue */ "./resources/js/components/StoreReceive.vue"));
 }; // var token = window.localStorage.getItem('token');
 // console.log(token);
 
@@ -53598,6 +53674,23 @@ var routes = [{
   name: 'additem',
   path: '/additem',
   component: AddItem,
+  beforeEnter: function beforeEnter(to, from, next) {
+    axios.get('/api/authenticated', {
+      headers: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
+    }).then(function () {
+      next();
+    })["catch"](function () {
+      return next({
+        name: 'login'
+      });
+    });
+  }
+}, {
+  name: 'storeReceive',
+  path: '/storereceive',
+  component: StoreReceive,
   beforeEnter: function beforeEnter(to, from, next) {
     axios.get('/api/authenticated', {
       headers: {
