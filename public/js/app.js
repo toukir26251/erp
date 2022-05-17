@@ -19903,7 +19903,12 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "container mt-5" }, [_c("router-view")], 1),
+      _c(
+        "div",
+        { staticClass: "container-fluid mt-4 mx-3" },
+        [_c("router-view")],
+        1
+      ),
     ]),
   ])
 }
@@ -35538,27 +35543,27 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
 var Welcome = function Welcome() {
-  return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue"));
+  return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue"));
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
 };
 
 var ItemList = function ItemList() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/Login.vue */ "./resources/js/components/Login.vue"));
+  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/Login.vue */ "./resources/js/components/Login.vue"));
 };
 
 var AddItem = function AddItem() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/AddItem.vue */ "./resources/js/components/AddItem.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/AddItem.vue */ "./resources/js/components/AddItem.vue"));
 };
 
 var EditItem = function EditItem() {
-  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./components/EditItem.vue */ "./resources/js/components/EditItem.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/EditItem.vue */ "./resources/js/components/EditItem.vue"));
 }; // var token = window.localStorage.getItem('token');
 // console.log(token);
 
@@ -35676,8 +35681,8 @@ var ifAuthenticated = function ifAuthenticated(to, from, next) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\ERP\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\ERP\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Personal\erp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Personal\erp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
