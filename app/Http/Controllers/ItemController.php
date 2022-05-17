@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class ItemController extends Controller
 {
@@ -13,10 +14,21 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::get();
-        return response()->json($items);
+        $length = $request->input('length');
+        $sortBy = $request->input('column');
+        $orderBy = $request->input('dir');
+        $searchValue = $request->input('search');
+
+//        $query = Item::eloquentQuery($sortBy, $orderBy, $searchValue);
+        $query = Item::where('item_code', 'LIKE', '%'.$searchValue.'%')->orWhere('item_name', 'LIKE', '%'.$searchValue.'%')->orderBy($sortBy, $orderBy);
+        $items = $query->paginate($length);
+
+        return new DataTableCollectionResource($items);
+
+//        $items = Item::get();
+//        return response()->json($items);
     }
 
     /**

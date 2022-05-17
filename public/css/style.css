@@ -26,7 +26,7 @@ p {
 }
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -200px;
 }
 
 a, a:hover, a:focus {
@@ -95,4 +95,15 @@ ul ul a {
 
 .card-data-view{
     background: #fff;
+}
+
+
+@media screen and (max-width: 492px) {
+    #sidebar {
+        margin-left: -200px;
+    }
+
+    #sidebar.active {
+        margin-left: 0px;
+    }
 }

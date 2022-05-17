@@ -30,7 +30,7 @@
             </li>
         </ul>
     </nav>
-    <div class="container-fluid mt-4 mx-3">
+    <div class="container-fluid mt-4 mx-md-3">
         <router-view></router-view>
     </div>
     </div>
