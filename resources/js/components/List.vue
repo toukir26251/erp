@@ -57,7 +57,7 @@
 <script>
 import EditButtonComponent from "./buttons/items/EditButtonComponent";
 export default {
-    name:"categories",
+    name:"items",
     data(){
         return {
             data_table_columns: [
@@ -99,7 +99,7 @@ export default {
         }
     },
     mounted(){
-        this.getItems()
+        // this.getItems()
     },
     methods:{
         async getItems(){

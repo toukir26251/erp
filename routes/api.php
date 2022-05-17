@@ -28,7 +28,14 @@ Route::post('register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
 
+Route::get('dashdata',"HomeController@dashBoardData");
+
+
 Route::resource('items',"ItemController");
 Route::get('getallitems',"ItemController@getAllItems");
+Route::get('stock',"StoreController@getStock");
 
 Route::resource('store',"StoreController");
+Route::get('requisition',"StoreController@requisitionIndex");
+Route::get('pendingrequisition',"StoreController@pendingRequisitionIndex");
+Route::post('requisition',"StoreController@setRequisition");

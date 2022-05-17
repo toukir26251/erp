@@ -62,7 +62,7 @@ export default {
         async create(){
             await this.axios.post('/api/items',this.item).then(response=>{
                 this.$router.push({name:"itemList"})
-                swal("Updated!", "Change saved!", "success");
+                swal("Added!", "Item saved!", "success");
             }).catch(error=>{
                 console.log(error)
             })

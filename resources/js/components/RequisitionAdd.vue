@@ -4,27 +4,27 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-left">
-                        <h4>Store Receive</h4>
+                        <h4>Create Requisition</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <div v-for="(ind,key) in items.qnt">
-                    <div class="row" id="item_add_body">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Item</label>
-                                <select class="form-control" v-model="items.itemid[key]" v-bind:id="'item_select_'+key">
-                                    <option v-for="item in allItems" :value="item.id">{{item.item_name}}</option>
-                                </select>
+                        <div class="row" id="item_add_body">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Item</label>
+                                    <select class="form-control" v-model="items.itemid[key]" v-bind:id="'item_select_'+key">
+                                        <option v-for="item in allItems" :value="item.id">{{item.item_name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <div class="form-group">
+                                    <label>Qnt</label>
+                                    <input type="text" class="form-control" v-model="items.qnt[key]">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-2">
-                            <div class="form-group">
-                                <label>Qnt</label>
-                                <input type="text" class="form-control" v-model="items.qnt[key]">
-                            </div>
-                        </div>
-                    </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-2">
@@ -43,11 +43,11 @@ export default {
     data(){
         return{
             items:{
-                    itemid : [],
-                    qnt : [1],
-                    token: localStorage.getItem('token'),
-                    user: localStorage.getItem('user')
-                },
+                itemid : [],
+                qnt : [1],
+                token: localStorage.getItem('token'),
+                user: localStorage.getItem('user')
+            },
             allItems:[]
         }
     },
@@ -67,9 +67,9 @@ export default {
             })
         },
         async submitReceive(){
-            await this.axios.post('/api/store',this.items).then(response=>{
-                this.$router.push({name:"storeReceiveTrans"})
-                swal("Saved!", "Store Received!", "success");
+            await this.axios.post('/api/requisition',this.items).then(response=>{
+                this.$router.push({name:"requisitionList"})
+                swal("Saved!", "Requisition Submitted!", "success");
             }).catch(error=>{
                 console.log(error)
             })

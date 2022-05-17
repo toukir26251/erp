@@ -16,12 +16,18 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('receive_ref');
-            $table->float('total_price')->default(0.00);;
+            $table->string('type');
+            $table->float('total_price')->default(0.00);
+            $table->string('status')->default('pending');
             $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('approved_by')->nullable();
+            $table->unsignedBigInteger('done_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('created_by')->on('users')->references('id');
+            $table->foreign('approved_by')->on('users')->references('id');
+            $table->foreign('done_by')->on('users')->references('id');
         });
     }
 

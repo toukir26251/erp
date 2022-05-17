@@ -5,6 +5,11 @@ const Login = () => import('./components/Login.vue');
 const AddItem = () => import('./components/AddItem.vue');
 const EditItem = () => import('./components/EditItem.vue');
 const StoreReceive = () => import('./components/StoreReceive.vue');
+const AllStoreReceive = () => import('./components/AllStoreReceive.vue');
+const Stock = () => import('./components/Stock.vue');
+const RequisitionAdd = () => import('./components/RequisitionAdd');
+const RequisitionList = () => import('./components/AllRequisition.vue');
+const PendingRequisition = () => import('./components/PendingRequisition.vue');
 
 // var token = window.localStorage.getItem('token');
 // console.log(token);
@@ -83,6 +88,86 @@ export const routes = [
         name: 'storeReceive',
         path: '/storereceive',
         component: StoreReceive,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authenticated',{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(()=>{
+                next()
+            }).catch(()=>{
+                return next({name:'login'});
+            })
+        }
+    },
+    {
+        name: 'storeReceiveTrans',
+        path: '/storereceivetrans',
+        component: AllStoreReceive,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authenticated',{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(()=>{
+                next()
+            }).catch(()=>{
+                return next({name:'login'});
+            })
+        }
+    },
+    {
+        name: 'stock',
+        path: '/stock',
+        component: Stock,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authenticated',{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(()=>{
+                next()
+            }).catch(()=>{
+                return next({name:'login'});
+            })
+        }
+    },
+    {
+        name: 'requisitionAdd',
+        path: '/requisitionadd',
+        component: RequisitionAdd,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authenticated',{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(()=>{
+                next()
+            }).catch(()=>{
+                return next({name:'login'});
+            })
+        }
+    },
+    {
+        name: 'requisitionList',
+        path: '/requisitionlist',
+        component: RequisitionList,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authenticated',{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(()=>{
+                next()
+            }).catch(()=>{
+                return next({name:'login'});
+            })
+        }
+    },
+    {
+        name: 'pendingrequisitions',
+        path: '/pendingRequisitions',
+        component: PendingRequisition,
         beforeEnter: (to, from, next) => {
             axios.get('/api/authenticated',{
                 headers: {
