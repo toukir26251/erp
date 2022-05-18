@@ -20,7 +20,8 @@ class LoginController extends Controller
             return response()->json([
                 "success"=>true,
                 "user"=>$user->id,
-                "token"=>$user->createToken($request->email)->plainTextToken
+                "token"=>$user->createToken($request->email)->plainTextToken,
+                "role"=>$user->getRoleNames()[0]
             ]);
         }
         throw ValidationException::withMessages([
@@ -30,5 +31,10 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
+    }
+
+    public function checkAbility(){
+        $roles = \auth()->getRoles();
+        return response()->json(["success"=>true, "data"=>$roles]);
     }
 }

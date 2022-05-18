@@ -12,26 +12,30 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\User::create(
+        $admin = \App\User::create(
             [
                 "name"=>"Admin",
                 "email"=>"admin@demo.com",
                 "password"=>Hash::make("123456")
             ]
         );
-        \App\User::create(
+        $store_exe = \App\User::create(
             [
                 "name"=>"Store Executive",
                 "email"=>"store@demo.com",
                 "password"=>Hash::make("123456")
             ]
         );
-        \App\User::create(
+        $emp = \App\User::create(
             [
                 "name"=>"Employee",
                 "email"=>"emp@demo.com",
                 "password"=>Hash::make("123456")
             ]
         );
+
+        $admin->assignRole('admin');
+        $store_exe->assignRole('store_executive');
+        $emp->assignRole('employee');
     }
 }

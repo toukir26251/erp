@@ -2096,11 +2096,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      auth: false
+      auth: false,
+      role: ''
     };
   },
   created: function created() {
     this.ifAuthenticated();
+    this.setRole();
   },
   methods: {
     logout: function logout() {
@@ -2117,11 +2119,12 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     ifAuthenticated: function ifAuthenticated() {
-      console.log('asdf');
-
       if (localStorage.getItem('token')) {
         this.auth = true;
       } else this.auth = false;
+    },
+    setRole: function setRole() {
+      this.role = localStorage.getItem('role');
     }
   }
 });
@@ -37813,258 +37816,282 @@ var render = function () {
       _vm.auth
         ? _c("nav", { attrs: { id: "sidebar" } }, [
             _c("ul", { staticClass: "list-unstyled components" }, [
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-item nav-link",
-                      attrs: { "exact-active-class": "active", to: "/home" },
-                    },
+              _vm.role == "admin" ||
+              _vm.role == "store_executive" ||
+              _vm.role == "employee"
+                ? _c(
+                    "li",
                     [
-                      _c("i", {
-                        staticClass: "fa fa-home",
-                        attrs: { "aria-hidden": "true" },
-                      }),
-                      _vm._v(" Home"),
-                    ]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  {
-                    staticClass: "collapse list-unstyled",
-                    attrs: { id: "pageSubmenu" },
-                  },
-                  [
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-item nav-link",
-                            attrs: {
-                              "exact-active-class": "active",
-                              to: "/additem",
-                            },
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-item nav-link",
+                          attrs: {
+                            "exact-active-class": "active",
+                            to: "/home",
                           },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-plus-circle",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                            _vm._v(" Add Items"),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-home",
+                            attrs: { "aria-hidden": "true" },
+                          }),
+                          _vm._v(" Home"),
+                        ]
+                      ),
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.role == "admin"
+                ? _c("li", [
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
-                      "li",
+                      "ul",
+                      {
+                        staticClass: "collapse list-unstyled",
+                        attrs: { id: "pageSubmenu" },
+                      },
                       [
                         _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-item nav-link",
-                            attrs: {
-                              "exact-active-class": "active",
-                              to: "/itemlist",
-                            },
-                          },
+                          "li",
                           [
-                            _c("i", {
-                              staticClass: "fa fa-list",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                            _vm._v("\n                        All Items"),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  {
-                    staticClass: "collapse list-unstyled",
-                    attrs: { id: "pageSubmenu1" },
-                  },
-                  [
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-item nav-link",
-                            attrs: {
-                              "exact-active-class": "active",
-                              to: "/storereceive",
-                            },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-plus-circle",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                            _vm._v(" Receive Items"),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-item nav-link",
-                            attrs: {
-                              "exact-active-class": "active",
-                              to: "/storereceivetrans",
-                            },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-list",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                            _vm._v("\n                        All Receives"),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(3),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  {
-                    staticClass: "collapse list-unstyled",
-                    attrs: { id: "pageSubmenu2" },
-                  },
-                  [
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-item nav-link",
-                            attrs: {
-                              "exact-active-class": "active",
-                              to: "/requisitionadd",
-                            },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-plus-circle",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                            _vm._v(" Requisition Create"),
-                          ]
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-item nav-link",
-                            attrs: {
-                              "exact-active-class": "active",
-                              to: "/requisitionlist",
-                            },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-list",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                            _vm._v(
-                              "\n                        All Requisitions"
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-item nav-link",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/additem",
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-plus-circle",
+                                  attrs: { "aria-hidden": "true" },
+                                }),
+                                _vm._v(" Add Items"),
+                              ]
                             ),
-                          ]
+                          ],
+                          1
                         ),
-                      ],
-                      1
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-item nav-link",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/itemlist",
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-list",
+                                  attrs: { "aria-hidden": "true" },
+                                }),
+                                _vm._v(
+                                  "\n                            All Items"
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ]
                     ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.role == "admin" || _vm.role == "store_executive"
+                ? _c("li", [
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
-                      "li",
+                      "ul",
+                      {
+                        staticClass: "collapse list-unstyled",
+                        attrs: { id: "pageSubmenu1" },
+                      },
                       [
                         _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-item nav-link",
-                            attrs: {
-                              "exact-active-class": "active",
-                              to: "/pendingrequisitions",
-                            },
-                          },
+                          "li",
                           [
-                            _c("i", {
-                              staticClass: "fa fa-tasks",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                            _vm._v(
-                              "\n                        Pending Requisitions"
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-item nav-link",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/storereceive",
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-plus-circle",
+                                  attrs: { "aria-hidden": "true" },
+                                }),
+                                _vm._v(" Receive Items"),
+                              ]
                             ),
-                          ]
+                          ],
+                          1
                         ),
-                      ],
-                      1
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-item nav-link",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/storereceivetrans",
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-list",
+                                  attrs: { "aria-hidden": "true" },
+                                }),
+                                _vm._v(
+                                  "\n                            All Receives"
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                      ]
                     ),
-                  ]
-                ),
-              ]),
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-item nav-link",
-                      attrs: { "exact-active-class": "active", to: "/stock" },
-                    },
+              _vm.role == "admin" || _vm.role == "employee"
+                ? _c("li", [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "collapse list-unstyled",
+                        attrs: { id: "pageSubmenu2" },
+                      },
+                      [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-item nav-link",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/requisitionadd",
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-plus-circle",
+                                  attrs: { "aria-hidden": "true" },
+                                }),
+                                _vm._v(" Requisition Create"),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-item nav-link",
+                                attrs: {
+                                  "exact-active-class": "active",
+                                  to: "/requisitionlist",
+                                },
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-list",
+                                  attrs: { "aria-hidden": "true" },
+                                }),
+                                _vm._v(
+                                  "\n                            All Requisitions"
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm.role == "admin"
+                          ? _c(
+                              "li",
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "nav-item nav-link",
+                                    attrs: {
+                                      "exact-active-class": "active",
+                                      to: "/pendingrequisitions",
+                                    },
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-tasks",
+                                      attrs: { "aria-hidden": "true" },
+                                    }),
+                                    _vm._v(
+                                      "\n                            Pending Requisitions"
+                                    ),
+                                  ]
+                                ),
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                      ]
+                    ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.role == "admin" || _vm.role == "store_executive"
+                ? _c(
+                    "li",
                     [
-                      _c("i", {
-                        staticClass: "fa fa-database",
-                        attrs: { "aria-hidden": "true" },
-                      }),
-                      _vm._v(" Stock"),
-                    ]
-                  ),
-                ],
-                1
-              ),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-item nav-link",
+                          attrs: {
+                            "exact-active-class": "active",
+                            to: "/stock",
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa fa-database",
+                            attrs: { "aria-hidden": "true" },
+                          }),
+                          _vm._v(" Stock"),
+                        ]
+                      ),
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c("li", [
                 _c(
@@ -53781,51 +53808,51 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
 var Welcome = function Welcome() {
-  return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue"));
+  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue"));
 };
 
 var Home = function Home() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
 };
 
 var ItemList = function ItemList() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/List.vue */ "./resources/js/components/List.vue"));
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/Login.vue */ "./resources/js/components/Login.vue"));
+  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/Login.vue */ "./resources/js/components/Login.vue"));
 };
 
 var AddItem = function AddItem() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/AddItem.vue */ "./resources/js/components/AddItem.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/AddItem.vue */ "./resources/js/components/AddItem.vue"));
 };
 
 var EditItem = function EditItem() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/EditItem.vue */ "./resources/js/components/EditItem.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/EditItem.vue */ "./resources/js/components/EditItem.vue"));
 };
 
 var StoreReceive = function StoreReceive() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/StoreReceive.vue */ "./resources/js/components/StoreReceive.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./components/StoreReceive.vue */ "./resources/js/components/StoreReceive.vue"));
 };
 
 var AllStoreReceive = function AllStoreReceive() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./components/AllStoreReceive.vue */ "./resources/js/components/AllStoreReceive.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/AllStoreReceive.vue */ "./resources/js/components/AllStoreReceive.vue"));
 };
 
 var Stock = function Stock() {
-  return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/Stock.vue */ "./resources/js/components/Stock.vue"));
+  return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/Stock.vue */ "./resources/js/components/Stock.vue"));
 };
 
 var RequisitionAdd = function RequisitionAdd() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ./components/RequisitionAdd */ "./resources/js/components/RequisitionAdd.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./components/RequisitionAdd */ "./resources/js/components/RequisitionAdd.vue"));
 };
 
 var RequisitionList = function RequisitionList() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./components/AllRequisition.vue */ "./resources/js/components/AllRequisition.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/AllRequisition.vue */ "./resources/js/components/AllRequisition.vue"));
 };
 
 var PendingRequisition = function PendingRequisition() {
-  return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./components/PendingRequisition.vue */ "./resources/js/components/PendingRequisition.vue"));
+  return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/PendingRequisition.vue */ "./resources/js/components/PendingRequisition.vue"));
 }; // var token = window.localStorage.getItem('token');
 // console.log(token);
 
@@ -54045,8 +54072,8 @@ var ifAuthenticated = function ifAuthenticated(to, from, next) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\ERP\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\ERP\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Personal\erp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Personal\erp\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

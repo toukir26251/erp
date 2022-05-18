@@ -39,3 +39,5 @@ Route::resource('store',"StoreController");
 Route::get('requisition',"StoreController@requisitionIndex");
 Route::get('pendingrequisition',"StoreController@pendingRequisitionIndex");
 Route::post('requisition',"StoreController@setRequisition");
+
+Route::get('abilities','LoginController@checkAbility');

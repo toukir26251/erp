@@ -40,6 +40,7 @@ export default {
             axios.post('/api/login', this.form).then((res) =>{
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('user', res.data.user);
+                localStorage.setItem('role', res.data.role);
                 this.$router.push({ name: "home"});
                 // this.alerts = true;
                 // console.log(res.data.token);
