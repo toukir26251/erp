@@ -81,7 +81,11 @@ export default {
     },
     methods:{
         async getDashBoardData(){
-            await this.axios.get('/api/dashdata').then(response=>{
+            await this.axios.get('/api/dashdata',{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(response=>{
                 this.categories = response.data
             }).catch(error=>{
                 console.log(error)

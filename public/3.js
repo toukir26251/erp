@@ -64,6 +64,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "additem",
   data: function data() {
@@ -72,7 +78,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         itemname: '',
         itemcode: '',
         itemdetails: '',
-        itemprice: ''
+        itemprice: '',
+        itemunit: ''
       }
     };
   },
@@ -86,7 +93,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.post('/api/items', _this.item).then(function (response) {
+                return _this.axios.post('/api/items', _this.item, {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                  }
+                }).then(function (response) {
                   _this.$router.push({
                     name: "itemList"
                   });
@@ -248,6 +259,34 @@ var render = function () {
                             return
                           }
                           _vm.$set(_vm.item, "itemprice", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Unit")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.item.itemunit,
+                          expression: "item.itemunit",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.item.itemunit },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.item, "itemunit", $event.target.value)
                         },
                       },
                     }),

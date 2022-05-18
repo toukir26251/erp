@@ -34,6 +34,12 @@
                                     <input type="text" class="form-control" v-model="item.itemprice">
                                 </div>
                             </div>
+                            <div class="col-6 mb-2">
+                                <div class="form-group">
+                                    <label>Unit</label>
+                                    <input type="text" class="form-control" v-model="item.itemunit">
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
@@ -55,6 +61,7 @@ export default {
                 itemcode:'',
                 itemdetails:'',
                 itemprice:'',
+                itemunit:'',
                 _method:"patch"
             }
         }
@@ -64,17 +71,26 @@ export default {
     },
     methods:{
         async getItem(){
-            await this.axios.get(`/api/items/${this.$route.params.id}`).then(response=>{
+            await this.axios.get(`/api/items/${this.$route.params.id}`,{
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(response=>{
                 this.item.itemname = response.data.data.itemname
                 this.item.itemcode = response.data.data.itemcode
                 this.item.itemdetails = response.data.data.itemdetails
                 this.item.itemprice = response.data.data.itemprice
+                this.item.itemunit = response.data.data.itemunit
             }).catch(error=>{
                 console.log(error)
             })
         },
         async update(){
-            await this.axios.post(`/api/items/${this.$route.params.id}`,this.item).then(response=>{
+            await this.axios.post(`/api/items/${this.$route.params.id}`,this.item,{
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+            }).then(response=>{
                 this.$router.push({name:"itemList"})
                 swal("Updated!", "Change saved!", "success");
             }).catch(error=>{

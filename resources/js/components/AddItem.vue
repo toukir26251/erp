@@ -34,6 +34,12 @@
                                     <input type="text" class="form-control" v-model="item.itemprice">
                                 </div>
                             </div>
+                            <div class="col-6 mb-2">
+                                <div class="form-group">
+                                    <label>Unit</label>
+                                    <input type="text" class="form-control" v-model="item.itemunit">
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
@@ -54,13 +60,18 @@ export default {
                 itemname:'',
                 itemcode:'',
                 itemdetails:'',
-                itemprice:''
+                itemprice:'',
+                itemunit:''
             }
         }
     },
     methods:{
         async create(){
-            await this.axios.post('/api/items',this.item).then(response=>{
+            await this.axios.post('/api/items',this.item,{
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(response=>{
                 this.$router.push({name:"itemList"})
                 swal("Added!", "Item saved!", "success");
             }).catch(error=>{

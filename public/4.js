@@ -41,6 +41,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "receive",
   data: function data() {
@@ -70,7 +71,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: 'status',
         orderable: true
       }],
-      received: []
+      received: [],
+      auth: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
     };
   },
   mounted: function mounted() {// this.getReceive()
@@ -134,7 +138,7 @@ var render = function () {
                 "router-link",
                 {
                   staticClass: "btn btn-outline-primary",
-                  attrs: { to: { name: "storeReceive" }, title: "Add New" },
+                  attrs: { to: { name: "requisitionAdd" }, title: "Add New" },
                 },
                 [
                   _c("i", {
@@ -156,6 +160,7 @@ var render = function () {
               attrs: {
                 columns: _vm.data_table_columns,
                 url: "/api/requisition",
+                headers: _vm.auth,
               },
             }),
           ],

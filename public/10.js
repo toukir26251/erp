@@ -29,6 +29,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "stock",
   data: function data() {
@@ -50,7 +51,10 @@ __webpack_require__.r(__webpack_exports__);
         name: 'tot',
         orderable: true
       }],
-      items: []
+      items: [],
+      auth: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
     };
   },
   mounted: function mounted() {// this.getItems()
@@ -85,7 +89,11 @@ var render = function () {
           { staticClass: "card-body" },
           [
             _c("data-table", {
-              attrs: { columns: _vm.data_table_columns, url: "/api/stock" },
+              attrs: {
+                columns: _vm.data_table_columns,
+                url: "/api/stock",
+                headers: _vm.auth,
+              },
             }),
           ],
           1

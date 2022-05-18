@@ -18,6 +18,7 @@ class CreateItemsTable extends Migration
             $table->string('item_code');
             $table->string('item_name');
             $table->string('price');
+            $table->string('unit')->default("unit");
             $table->string('item_details')->nullable();
             $table->softDeletes();
             $table->timestamps();

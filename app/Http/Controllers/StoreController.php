@@ -38,7 +38,7 @@ class StoreController extends Controller
             $items = [];
             $data[$key]->items = "";
             foreach ($d->details as $key1=>$row){
-                $items[] = $row->item->item_name." : ".$row->qnt." | ".$row->price." BDT";
+                $items[] = $row->item->item_name." : ".abs($row->qnt)." | ".$row->price." BDT";
             }
             $data[$key]->items = implode(" , ",$items);
         }
@@ -48,16 +48,29 @@ class StoreController extends Controller
 
     public function requisitionIndex(Request $request)
     {
+        $userRoles = Auth::user()->roles()->get();
+        $userRoles = $userRoles[0];
+        $role = $userRoles->name;
+
         $length = $request->input('length');
         $sortBy = $request->input('column');
         $orderBy = $request->input('dir');
         $searchValue = $request->input('search');
 
 //        $query = Item::eloquentQuery($sortBy, $orderBy, $searchValue);
-        $query = Store::with("details.item")->where('type','out')->where(function ($query) use($searchValue){
-            $query->where('receive_ref', 'LIKE', '%'.$searchValue.'%')->orWhere('created_at', 'LIKE', '%'.$searchValue.'%');
-        })->orderBy($sortBy, $orderBy);
-        $data = $query->paginate($length);
+        if($role == "admin"){
+            $query = Store::with("details.item")->where('type','out')->where(function ($query) use($searchValue){
+                $query->where('receive_ref', 'LIKE', '%'.$searchValue.'%')->orWhere('created_at', 'LIKE', '%'.$searchValue.'%');
+            })->orderBy($sortBy, $orderBy);
+            $data = $query->paginate($length);
+        }
+        else{
+            $query = Store::with("details.item")->where('type','out')->where(function ($query) use($searchValue){
+                $query->where('receive_ref', 'LIKE', '%'.$searchValue.'%')->orWhere('created_at', 'LIKE', '%'.$searchValue.'%');
+            })->where('created_by',Auth::user()->id)->orderBy($sortBy, $orderBy);
+            $data = $query->paginate($length);
+        }
+
 
         foreach($data as $key=> $d){
             $newtime = strtotime($d->created_at);
@@ -65,7 +78,7 @@ class StoreController extends Controller
             $items = [];
             $data[$key]->items = "";
             foreach ($d->details as $key1=>$row){
-                $items[] = $row->item->item_name." : ".$row->qnt." | ".$row->price." BDT";
+                $items[] = $row->item->item_name." : ".abs($row->qnt)." | ".$row->price." BDT";
             }
             $data[$key]->items = implode(" , ",$items);
         }
@@ -75,12 +88,15 @@ class StoreController extends Controller
 
     public function pendingRequisitionIndex(Request $request)
     {
+        $userRoles = Auth::user()->roles()->get();
+        $userRoles = $userRoles[0];
+        $role = $userRoles->name;
+        $statusToCheck = ($role == 'admin') ? "pending" : "approved";
+
         $length = $request->input('length');
         $sortBy = $request->input('column');
         $orderBy = $request->input('dir');
         $searchValue = $request->input('search');
-
-        $statusToCheck = 'pending';
 
 //        $query = Item::eloquentQuery($sortBy, $orderBy, $searchValue);
         $query = Store::with("details.item")->where(['type'=>'out','status'=>$statusToCheck])->where(function ($query) use($searchValue){
@@ -94,7 +110,7 @@ class StoreController extends Controller
             $items = [];
             $data[$key]->items = "";
             foreach ($d->details as $key1=>$row){
-                $items[] = $row->item->item_name." : ".$row->qnt." | ".$row->price." BDT";
+                $items[] = $row->item->item_name." : ".abs($row->qnt)." | ".$row->price." BDT";
             }
             $data[$key]->items = implode(" , ",$items);
         }
@@ -202,7 +218,7 @@ class StoreController extends Controller
     {
         $stat = $request->status;
 
-        if($stat == 'approved')
+        if($stat == 'approved' || $stat == 'rejected')
             Store::where('id',$store)->update([
                 "status"=>$stat,
                 "approved_by"=>$request->user

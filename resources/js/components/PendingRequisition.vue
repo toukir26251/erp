@@ -14,7 +14,8 @@
 
                     <data-table
                         :columns="data_table_columns"
-                        url="/api/pendingrequisition">
+                        url="/api/pendingrequisition"
+                        :headers= auth>
                     </data-table>
                 </div>
             </div>
@@ -73,7 +74,10 @@ export default {
                     }
                 },
             ],
-            received:[]
+            received:[],
+            auth:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         }
     },
     mounted(){

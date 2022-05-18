@@ -10,7 +10,8 @@
                 <div class="card-body">
                     <data-table
                         :columns="data_table_columns"
-                        url="/api/stock">
+                        url="/api/stock"
+                        :headers= auth >
                     </data-table>
                 </div>
             </div>
@@ -45,7 +46,10 @@ export default {
                     orderable: true,
                 },
             ],
-            items:[]
+            items:[],
+            auth:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         }
     },
     mounted(){

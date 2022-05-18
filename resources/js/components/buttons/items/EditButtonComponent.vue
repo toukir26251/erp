@@ -24,7 +24,11 @@
                 })
                     .then((willDelete) => {
                         if (willDelete) {
-                            this.axios.delete(`/api/items/${id}`).then(response=> {
+                            this.axios.delete(`/api/items/${id}`,{
+                                headers:{
+                                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                                }
+                            }).then(response=> {
                                 this.$router.push({name:"itemList"})
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",

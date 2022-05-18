@@ -14,7 +14,8 @@
 
                     <data-table
                         :columns="data_table_columns"
-                        url="/api/store?type=in">
+                        url="/api/store?type=in"
+                        :headers= auth>
                     </data-table>
                 </div>
             </div>
@@ -54,7 +55,10 @@ export default {
                     orderable: true,
                 },
             ],
-            received:[]
+            received:[],
+            auth:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         }
     },
     mounted(){

@@ -74,6 +74,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "items",
@@ -86,6 +87,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         label: 'Name',
         name: 'item_name',
+        orderable: true
+      }, {
+        label: 'Unit',
+        name: 'unit',
         orderable: true
       }, {
         label: 'Code',
@@ -108,7 +113,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           'btn-sm': true
         }
       }],
-      items: []
+      items: [],
+      auth: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
     };
   },
   mounted: function mounted() {// this.getItems()
@@ -191,7 +199,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   dangerMode: true
                 }).then(function (willDelete) {
                   if (willDelete) {
-                    _this.axios["delete"]("/api/items/".concat(id)).then(function (response) {
+                    _this.axios["delete"]("/api/items/".concat(id), {
+                      headers: {
+                        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                      }
+                    }).then(function (response) {
                       _this.$router.push({
                         name: "itemList"
                       });
@@ -266,7 +278,11 @@ var render = function () {
           { staticClass: "card-body" },
           [
             _c("data-table", {
-              attrs: { columns: _vm.data_table_columns, url: "/api/items" },
+              attrs: {
+                columns: _vm.data_table_columns,
+                url: "/api/items",
+                headers: _vm.auth,
+              },
             }),
           ],
           1

@@ -46,7 +46,8 @@
 
                     <data-table
                         :columns="data_table_columns"
-                        url="/api/items">
+                        url="/api/items"
+                        :headers= auth>
                     </data-table>
                 </div>
             </div>
@@ -69,6 +70,11 @@ export default {
                 {
                     label: 'Name',
                     name: 'item_name',
+                    orderable: true,
+                },
+                {
+                    label: 'Unit',
+                    name: 'unit',
                     orderable: true,
                 },
                 {
@@ -95,7 +101,10 @@ export default {
                     }
                 },
             ],
-            items:[]
+            items:[],
+            auth:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         }
     },
     mounted(){

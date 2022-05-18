@@ -41,6 +41,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "receive",
   data: function data() {
@@ -66,7 +67,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: 'total_price',
         orderable: true
       }],
-      received: []
+      received: [],
+      auth: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
     };
   },
   mounted: function mounted() {// this.getReceive()
@@ -152,6 +156,7 @@ var render = function () {
               attrs: {
                 columns: _vm.data_table_columns,
                 url: "/api/store?type=in",
+                headers: _vm.auth,
               },
             }),
           ],

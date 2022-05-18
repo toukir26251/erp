@@ -37,17 +37,17 @@
                         </li>
                     </ul>
                 </li>
-                <li v-if="role == 'admin' || role == 'employee'">
+                <li v-if="role == 'admin' || role == 'employee' || role == 'store_executive'">
                     <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-hand-paper-o" aria-hidden="true"></i> Requisition</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
-                        <li>
+                        <li v-if="role == 'admin' || role == 'employee'">
                             <router-link exact-active-class="active" to="/requisitionadd" class="nav-item nav-link"><i class="fa fa-plus-circle" aria-hidden="true"></i> Requisition Create</router-link>
                         </li>
-                        <li>
+                        <li v-if="role == 'admin' || role == 'employee'">
                             <router-link exact-active-class="active" to="/requisitionlist" class="nav-item nav-link"><i class="fa fa-list" aria-hidden="true"></i>
                                 All Requisitions</router-link>
                         </li>
-                        <li v-if="role == 'admin'">
+                        <li v-if="role == 'admin' || role == 'store_executive'">
                             <router-link exact-active-class="active" to="/pendingrequisitions" class="nav-item nav-link"><i class="fa fa-tasks" aria-hidden="true"></i>
                                 Pending Requisitions</router-link>
                         </li>

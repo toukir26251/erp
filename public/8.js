@@ -50,6 +50,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/api/login', this.form).then(function (res) {
+        // console.log(res.data.token);
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('user', res.data.user);
         localStorage.setItem('role', res.data.role);

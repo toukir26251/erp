@@ -64,6 +64,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "additem",
   data: function data() {
@@ -73,6 +79,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         itemcode: '',
         itemdetails: '',
         itemprice: '',
+        itemunit: '',
         _method: "patch"
       }
     };
@@ -90,11 +97,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get("/api/items/".concat(_this.$route.params.id)).then(function (response) {
+                return _this.axios.get("/api/items/".concat(_this.$route.params.id), {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                  }
+                }).then(function (response) {
                   _this.item.itemname = response.data.data.itemname;
                   _this.item.itemcode = response.data.data.itemcode;
                   _this.item.itemdetails = response.data.data.itemdetails;
                   _this.item.itemprice = response.data.data.itemprice;
+                  _this.item.itemunit = response.data.data.itemunit;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -116,7 +128,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.axios.post("/api/items/".concat(_this2.$route.params.id), _this2.item).then(function (response) {
+                return _this2.axios.post("/api/items/".concat(_this2.$route.params.id), _this2.item, {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                  }
+                }).then(function (response) {
                   _this2.$router.push({
                     name: "itemList"
                   });
@@ -278,6 +294,34 @@ var render = function () {
                             return
                           }
                           _vm.$set(_vm.item, "itemprice", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Unit")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.item.itemunit,
+                          expression: "item.itemunit",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.item.itemunit },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.item, "itemunit", $event.target.value)
                         },
                       },
                     }),

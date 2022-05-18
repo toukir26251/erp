@@ -64,6 +64,7 @@ class ItemController extends Controller
             "item_code" => $request->itemcode,
             "item_name" => $request->itemname,
             "item_details" => $request->itemdetails,
+            "unit" => $request->itemunit,
             "price" => $request->itemprice
         ]);
 
@@ -91,6 +92,7 @@ class ItemController extends Controller
                     "itemcode"=>$item->item_code,
                     "itemdetails"=>$item->item_details,
                     "itemprice"=>$item->price,
+                    "itemunit"=>$item->unit,
                 ]
             ]);
         }else{
@@ -128,7 +130,8 @@ class ItemController extends Controller
             "item_code" => $request->itemcode,
             "item_name" => $request->itemname,
             "item_details" => $request->itemdetails,
-            "price" => $request->itemprice
+            "price" => $request->itemprice,
+            "unit" => $request->itemunit
         ]);
 
         if($item) {

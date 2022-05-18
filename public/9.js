@@ -57,12 +57,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       items: {
         itemid: [],
         qnt: [1],
+        unit: [],
+        price: [],
         token: localStorage.getItem('token'),
         user: localStorage.getItem('user')
       },
@@ -100,7 +108,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.axios.get('/api/getallitems').then(function (response) {
+                return _this2.axios.get('/api/getallitems', {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                  }
+                }).then(function (response) {
                   _this2.allItems = response.data;
                 })["catch"](function (error) {
                   console.log(error);
@@ -124,7 +136,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this3.axios.post('/api/requisition', _this3.items).then(function (response) {
+                return _this3.axios.post('/api/requisition', _this3.items, {
+                  headers: {
+                    Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                  }
+                }).then(function (response) {
                   _this3.$router.push({
                     name: "requisitionList"
                   });
@@ -141,6 +157,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    setPriceAndUnit: function setPriceAndUnit(item_id, key) {
+      var selected = this.allItems.find(function (item) {
+        return item.id == item_id;
+      });
+      this.items.unit[key] = selected.unit;
+      this.items.price[key] = selected.price;
     }
   }
 });
@@ -177,7 +200,7 @@ var render = function () {
                   "div",
                   { staticClass: "row", attrs: { id: "item_add_body" } },
                   [
-                    _c("div", { staticClass: "col-md-4" }, [
+                    _c("div", { staticClass: "col-3" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", [_vm._v("Item")]),
                         _vm._v(" "),
@@ -192,26 +215,35 @@ var render = function () {
                                 expression: "items.itemid[key]",
                               },
                             ],
-                            staticClass: "form-control",
+                            staticClass: "form-control select2",
                             attrs: { id: "item_select_" + key },
                             on: {
-                              change: function ($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function (o) {
-                                    return o.selected
-                                  })
-                                  .map(function (o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.items.itemid,
-                                  key,
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              },
+                              change: [
+                                function ($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function (o) {
+                                      return o.selected
+                                    })
+                                    .map(function (o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.items.itemid,
+                                    key,
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function ($event) {
+                                  return _vm.setPriceAndUnit(
+                                    _vm.items.itemid[key],
+                                    key
+                                  )
+                                },
+                              ],
                             },
                           },
                           _vm._l(_vm.allItems, function (item) {
@@ -226,7 +258,7 @@ var render = function () {
                       ]),
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4 mb-2" }, [
+                    _c("div", { staticClass: "col-3 mb-2" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", [_vm._v("Qnt")]),
                         _vm._v(" "),
@@ -252,6 +284,28 @@ var render = function () {
                           },
                         }),
                       ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-3 mt-5" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.items.unit[key]) +
+                          "\n                        "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-3 mt-5" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(
+                            _vm.items.price[key]
+                              ? _vm.items.price[key] +
+                                  " BDT / " +
+                                  _vm.items.unit[key]
+                              : ""
+                          ) +
+                          "\n                        "
+                      ),
                     ]),
                   ]
                 ),

@@ -7,14 +7,15 @@
                         <h4>All Requisitions</h4>
                     </div>
                     <div class="float-right">
-                        <router-link :to='{name:"storeReceive"}' class="btn btn-outline-primary" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></router-link>
+                        <router-link :to='{name:"requisitionAdd"}' class="btn btn-outline-primary" title="Add New"><i class="fa fa-plus" aria-hidden="true"></i></router-link>
                     </div>
                 </div>
                 <div class="card-body">
 
                     <data-table
                         :columns="data_table_columns"
-                        url="/api/requisition">
+                        url="/api/requisition"
+                    :headers = auth>
                     </data-table>
                 </div>
             </div>
@@ -59,7 +60,10 @@ export default {
                     orderable: true,
                 },
             ],
-            received:[]
+            received:[],
+            auth:{
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         }
     },
     mounted(){

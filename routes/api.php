@@ -3,41 +3,28 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::middleware('auth:sanctum')->get('/authenticated', function () {
-    return true;
-});
 Route::post('register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
 
-Route::get('dashdata',"HomeController@dashBoardData");
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::middleware('auth:sanctum')->get('/authenticated', "HomeController@checkAuth");
+
+Route::group([
+    'middleware' => 'auth:sanctum'
+], function() {
+    Route::get('dashdata', "HomeController@dashBoardData");
 
 
-Route::resource('items',"ItemController");
-Route::get('getallitems',"ItemController@getAllItems");
-Route::get('stock',"StoreController@getStock");
+    Route::resource('items', "ItemController")->middleware('role:admin');
+    Route::get('getallitems', "ItemController@getAllItems")->middleware('role:admin|store_executive|employee');
+    Route::get('stock', "StoreController@getStock")->middleware('role:admin|store_executive');
 
-Route::resource('store',"StoreController");
-Route::get('requisition',"StoreController@requisitionIndex");
-Route::get('pendingrequisition',"StoreController@pendingRequisitionIndex");
-Route::post('requisition',"StoreController@setRequisition");
+    Route::resource('store', "StoreController")->middleware('role:admin|store_executive');
+    Route::get('requisition', "StoreController@requisitionIndex")->middleware('role:admin|employee');
+    Route::get('pendingrequisition', "StoreController@pendingRequisitionIndex")->middleware('role:admin|store_executive');
+    Route::post('requisition', "StoreController@setRequisition")->middleware('role:admin|employee');
+});
 
-Route::get('abilities','LoginController@checkAbility');

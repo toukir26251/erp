@@ -20,7 +20,7 @@ class LoginController extends Controller
             return response()->json([
                 "success"=>true,
                 "user"=>$user->id,
-                "token"=>$user->createToken($request->email)->plainTextToken,
+                "token"=>$user->createToken('auth_token')->plainTextToken,
                 "role"=>$user->getRoleNames()[0]
             ]);
         }
@@ -33,8 +33,4 @@ class LoginController extends Controller
         Auth::logout();
     }
 
-    public function checkAbility(){
-        $roles = \auth()->getRoles();
-        return response()->json(["success"=>true, "data"=>$roles]);
-    }
 }

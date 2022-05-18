@@ -34,6 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "receive",
@@ -76,7 +77,10 @@ __webpack_require__.r(__webpack_exports__);
           'btn-sm': true
         }
       }],
-      received: []
+      received: [],
+      auth: {
+        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+      }
     };
   },
   mounted: function mounted() {// this.getReceive()
@@ -109,15 +113,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      type: ""
+    };
+  },
   props: {
     data: {},
     name: {},
     click: {},
     classes: {}
   },
+  created: function created() {
+    this.settype();
+  },
   methods: {
-    approve: function approve(id) {
+    settype: function settype() {
+      this.type = localStorage.getItem('role');
+    },
+    approve: function approve(id, action) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -127,21 +143,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 swal({
                   title: "Ok!",
-                  text: "Do you want to approve this requisition?",
+                  text: "Do you want to make this requisition " + action + "?",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true
                 }).then(function (willDelete) {
                   if (willDelete) {
                     _this.axios.put("/api/store/".concat(id), {
-                      status: "approved",
+                      status: action,
                       user: localStorage.getItem('user')
+                    }, {
+                      headers: {
+                        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                      }
                     }).then(function (response) {
                       _this.$router.push({
                         name: "pendingrequisitions"
                       });
 
-                      swal("Done! This requisition is approved!", {
+                      swal("Done! This requisition is " + action + "!", {
                         icon: "success"
                       });
                     });
@@ -168,7 +188,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 swal({
                   title: "Ok!",
-                  text: "Do you want to approve this requisition?",
+                  text: "Do you want to make Done this requisition?",
                   icon: "warning",
                   buttons: true,
                   dangerMode: true
@@ -177,12 +197,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _this2.axios.put("/api/store/".concat(id), {
                       status: "done",
                       user: localStorage.getItem('user')
+                    }, {
+                      headers: {
+                        Authorization: "Bearer ".concat(localStorage.getItem('token'))
+                      }
                     }).then(function (response) {
                       _this2.$router.push({
                         name: "pendingrequisitions"
                       });
 
-                      swal("Done! This requisition is approved!", {
+                      swal("Done! This requisition is Done!", {
                         icon: "success"
                       });
                     });
@@ -255,6 +279,7 @@ var render = function () {
               attrs: {
                 columns: _vm.data_table_columns,
                 url: "/api/pendingrequisition",
+                headers: _vm.auth,
               },
             }),
           ],
@@ -296,43 +321,68 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-outline-success",
-        attrs: { type: "button" },
-        on: {
-          click: function ($event) {
-            return _vm.approve(_vm.data.id)
+    _vm.type === "admin"
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-danger",
+            attrs: { type: "button", title: "Reject" },
+            on: {
+              click: function ($event) {
+                return _vm.approve(_vm.data.id, "rejected")
+              },
+            },
           },
-        },
-      },
-      [
-        _c("i", {
-          staticClass: "fa fa-check-square-o",
-          attrs: { "aria-hidden": "true" },
-        }),
-      ]
-    ),
+          [
+            _c("i", {
+              staticClass: "fa fa-times",
+              attrs: { "aria-hidden": "true" },
+            }),
+          ]
+        )
+      : _vm._e(),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-outline-success",
-        attrs: { type: "button" },
-        on: {
-          click: function ($event) {
-            return _vm.done(_vm.data.id)
+    _vm.type === "admin"
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-success",
+            attrs: { type: "button", title: "Approve" },
+            on: {
+              click: function ($event) {
+                return _vm.approve(_vm.data.id, "approved")
+              },
+            },
           },
-        },
-      },
-      [
-        _c("i", {
-          staticClass: "fa fa-check-square-o",
-          attrs: { "aria-hidden": "true" },
-        }),
-      ]
-    ),
+          [
+            _c("i", {
+              staticClass: "fa fa-check-square-o",
+              attrs: { "aria-hidden": "true" },
+            }),
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.type === "store_executive"
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-success",
+            attrs: { type: "button", title: "Make Done" },
+            on: {
+              click: function ($event) {
+                return _vm.done(_vm.data.id)
+              },
+            },
+          },
+          [
+            _c("i", {
+              staticClass: "fa fa-check-square-o",
+              attrs: { "aria-hidden": "true" },
+            }),
+          ]
+        )
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []

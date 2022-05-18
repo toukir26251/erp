@@ -10,6 +10,7 @@ const Stock = () => import('./components/Stock.vue');
 const RequisitionAdd = () => import('./components/RequisitionAdd');
 const RequisitionList = () => import('./components/AllRequisition.vue');
 const PendingRequisition = () => import('./components/PendingRequisition.vue');
+const Unauthorized = () => import('./components/Unauthorized.vue');
 
 // var token = window.localStorage.getItem('token');
 // console.log(token);
@@ -21,6 +22,28 @@ export const routes = [
         component: Welcome
     },
     {
+        name:'unAuthorized',
+        path:'/unauthorized',
+        component: Unauthorized,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authenticated',{
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "store_executive" || type === "employee") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
+            }).catch(()=>{
+                return next({name:'login'});
+            })
+        }
+    },
+    {
         name:'home',
         path:'/home',
         component: Home,
@@ -29,8 +52,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "store_executive" || type === "employee") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -45,8 +74,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin') {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -61,8 +96,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin') {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -77,8 +118,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin') {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -93,8 +140,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "store_executive") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -109,8 +162,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "store_executive") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -125,8 +184,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "store_executive") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -141,8 +206,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "employee") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -157,8 +228,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "employee") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
@@ -173,8 +250,14 @@ export const routes = [
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
-            }).then(()=>{
-                next()
+            }).then((res)=>{
+                var type = res.data.roles[0].name;
+                if(type === 'admin' || type === "store_executive") {
+                    next()
+                }
+                else {
+                    next({name: 'unAuthorized'});
+                }
             }).catch(()=>{
                 return next({name:'login'});
             })
