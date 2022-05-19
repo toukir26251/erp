@@ -70,6 +70,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "additem",
   data: function data() {
@@ -81,6 +85,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         itemprice: '',
         itemunit: '',
         _method: "patch"
+      },
+      error: {
+        itemname: '',
+        itemcode: '',
+        itemdetails: '',
+        itemprice: '',
+        itemunit: ''
       }
     };
   },
@@ -88,6 +99,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.getItem();
   },
   methods: {
+    validate: function validate(data_to_check, error_show, type) {
+      console.log(data_to_check);
+
+      if (type === "string") {
+        if (data_to_check == "") {
+          if (error_show == 'itemname') {
+            this.error.itemname = "This field is required";
+          }
+
+          if (error_show == 'itemcode') {
+            this.error.itemcode = "This field is required";
+          }
+
+          if (error_show == 'itemunit') {
+            this.error.itemunit = "This field is required";
+          }
+
+          return false;
+        } else {
+          if (error_show == 'itemname') {
+            this.error.itemname = "";
+          }
+
+          if (error_show == 'itemcode') {
+            this.error.itemcode = "";
+          }
+
+          if (error_show == 'itemunit') {
+            this.error.itemunit = "";
+          }
+
+          return true;
+        }
+      }
+
+      if (type === "number") {
+        if (data_to_check == "") {
+          if (error_show == 'itemprice') {
+            this.error.itemprice = "This field is required";
+          }
+
+          return false;
+        } else if (data_to_check < 1) {
+          if (error_show == 'itemprice') {
+            this.error.itemprice = "Minimum value 1";
+          }
+
+          return false;
+        } else {
+          if (error_show == 'itemprice') {
+            this.error.itemprice = "";
+          }
+
+          return true;
+        }
+      }
+    },
     getItem: function getItem() {
       var _this = this;
 
@@ -127,7 +195,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                if (!(_this2.validate(_this2.item.itemname, "itemname", "string") && _this2.validate(_this2.item.itemcode, "itemcode", "string") && _this2.validate(_this2.item.itemprice, "itemprice", "number") && _this2.validate(_this2.item.itemunit, "itemunit", "string"))) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                _context2.next = 3;
                 return _this2.axios.post("/api/items/".concat(_this2.$route.params.id), _this2.item, {
                   headers: {
                     Authorization: "Bearer ".concat(localStorage.getItem('token'))
@@ -142,7 +215,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 2:
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -213,6 +286,10 @@ var render = function () {
                         },
                       },
                     }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-danger" }, [
+                      _vm._v(_vm._s(_vm.error.itemname)),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
@@ -241,6 +318,10 @@ var render = function () {
                         },
                       },
                     }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-danger" }, [
+                      _vm._v(_vm._s(_vm.error.itemcode)),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
@@ -297,6 +378,10 @@ var render = function () {
                         },
                       },
                     }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-danger" }, [
+                      _vm._v(_vm._s(_vm.error.itemprice)),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),
@@ -325,6 +410,10 @@ var render = function () {
                         },
                       },
                     }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-danger" }, [
+                      _vm._v(_vm._s(_vm.error.itemunit)),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),

@@ -13,4 +13,16 @@ class Store extends Model
     public function details(){
         return $this->hasMany(StoreDetails::class,'store_id','id');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class,'created_by','id');
+    }
+
+    public function approved_by_user(){
+        return $this->belongsTo(User::class,'approved_by','id');
+    }
+
+    public function done_by_user(){
+        return $this->belongsTo(User::class,'done_by','id');
+    }
 }

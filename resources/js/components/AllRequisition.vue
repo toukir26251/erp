@@ -59,6 +59,16 @@ export default {
                     name: 'status',
                     orderable: true,
                 },
+                {
+                    label: 'Approved By',
+                    name: 'approved_by_user.name',
+                    orderable: true,
+                },
+                {
+                    label: 'Done By',
+                    name: 'done_by_user.name',
+                    orderable: true,
+                },
             ],
             received:[],
             auth:{

@@ -70,6 +70,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         label: 'Status',
         name: 'status',
         orderable: true
+      }, {
+        label: 'Approved By',
+        name: 'approved_by_user.name',
+        orderable: true
+      }, {
+        label: 'Done By',
+        name: 'done_by_user.name',
+        orderable: true
       }],
       received: [],
       auth: {

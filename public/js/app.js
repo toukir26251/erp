@@ -53814,7 +53814,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
 var Welcome = function Welcome() {
-  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue"));
+  return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue"));
 };
 
 var Home = function Home() {
@@ -53862,7 +53862,7 @@ var PendingRequisition = function PendingRequisition() {
 };
 
 var Unauthorized = function Unauthorized() {
-  return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./components/Unauthorized.vue */ "./resources/js/components/Unauthorized.vue"));
+  return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./components/Unauthorized.vue */ "./resources/js/components/Unauthorized.vue"));
 }; // var token = window.localStorage.getItem('token');
 // console.log(token);
 

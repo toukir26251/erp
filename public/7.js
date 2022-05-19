@@ -87,10 +87,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       dashdata: {
-        total_items: 10291,
-        total_store_receive: 121232311,
-        total_recuisitions: 12312,
-        total_recusition_amount: 12322121
+        total_items: 0,
+        total_store_receive: 0,
+        total_recuisitions: 0,
+        total_recusition_amount: 0
       }
     };
   },
@@ -112,7 +112,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Authorization: "Bearer ".concat(localStorage.getItem('token'))
                   }
                 }).then(function (response) {
-                  _this.categories = response.data;
+                  // console.log(respo);
+                  _this.dashdata.total_items = response.data.data.total_item;
+                  _this.dashdata.total_store_receive = response.data.data.total_rec_amount;
+                  _this.dashdata.total_recuisitions = response.data.data.total_req;
+                  _this.dashdata.total_recusition_amount = response.data.data.total_req_amount;
                 })["catch"](function (error) {
                   console.log(error);
                   _this.categories = [];
@@ -154,7 +158,7 @@ var render = function () {
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-9" }, [
-              _c("h5", [_vm._v("Total Active Items (Count)")]),
+              _c("h5", [_vm._v("Total Received Items (Count)")]),
               _vm._v(" "),
               _c("h2", [_vm._v(_vm._s(_vm.dashdata.total_items))]),
             ]),
@@ -170,7 +174,7 @@ var render = function () {
             _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-9" }, [
-              _c("h5", [_vm._v("Total Store Received (BTD)")]),
+              _c("h5", [_vm._v("Total Store Received (BDT)")]),
               _vm._v(" "),
               _c("h2", [_vm._v(_vm._s(_vm.dashdata.total_store_receive))]),
             ]),
@@ -202,7 +206,7 @@ var render = function () {
             _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-9" }, [
-              _c("h5", [_vm._v("Total Recuisition Amount")]),
+              _c("h5", [_vm._v("Total Requisition Amount (BDT)")]),
               _vm._v(" "),
               _c("h2", [_vm._v(_vm._s(_vm.dashdata.total_recusition_amount))]),
             ]),

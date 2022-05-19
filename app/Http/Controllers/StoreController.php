@@ -59,13 +59,13 @@ class StoreController extends Controller
 
 //        $query = Item::eloquentQuery($sortBy, $orderBy, $searchValue);
         if($role == "admin"){
-            $query = Store::with("details.item")->where('type','out')->where(function ($query) use($searchValue){
-                $query->where('receive_ref', 'LIKE', '%'.$searchValue.'%')->orWhere('created_at', 'LIKE', '%'.$searchValue.'%');
+            $query = Store::with("details.item","user","approved_by_user","done_by_user")->where('type','out')->where(function ($query) use($searchValue){
+                $query->where('receive_ref', 'LIKE', '%'.$searchValue.'%')->orWhere('created_at', 'LIKE', '%'.$searchValue.'%')->orWhere('status','LIKE','%'.$searchValue.'%');
             })->orderBy($sortBy, $orderBy);
             $data = $query->paginate($length);
         }
         else{
-            $query = Store::with("details.item")->where('type','out')->where(function ($query) use($searchValue){
+            $query = Store::with("details.item","user","approved_by_user","done_by_user")->where('type','out')->where(function ($query) use($searchValue){
                 $query->where('receive_ref', 'LIKE', '%'.$searchValue.'%')->orWhere('created_at', 'LIKE', '%'.$searchValue.'%');
             })->where('created_by',Auth::user()->id)->orderBy($sortBy, $orderBy);
             $data = $query->paginate($length);
@@ -99,7 +99,7 @@ class StoreController extends Controller
         $searchValue = $request->input('search');
 
 //        $query = Item::eloquentQuery($sortBy, $orderBy, $searchValue);
-        $query = Store::with("details.item")->where(['type'=>'out','status'=>$statusToCheck])->where(function ($query) use($searchValue){
+        $query = Store::with("details.item","user","approved_by_user","done_by_user")->where(['type'=>'out','status'=>$statusToCheck])->where(function ($query) use($searchValue){
             $query->where('receive_ref', 'LIKE', '%'.$searchValue.'%')->orWhere('created_at', 'LIKE', '%'.$searchValue.'%');
         })->orderBy($sortBy, $orderBy);
         $data = $query->paginate($length);
@@ -137,7 +137,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $insertArray = [];
-        $getUser = $request->user;
+        $getUser = Auth::user()->id;
 
         $items = $request->itemid;
 
@@ -221,12 +221,12 @@ class StoreController extends Controller
         if($stat == 'approved' || $stat == 'rejected')
             Store::where('id',$store)->update([
                 "status"=>$stat,
-                "approved_by"=>$request->user
+                "approved_by"=>Auth::user()->id
             ]);
         if($stat == 'done')
             Store::where('id',$store)->update([
                 "status"=>$stat,
-                "done_by"=>$request->user
+                "done_by"=>Auth::user()->id
             ]);
 
         return response()->json(['success'=>true,"message"=>"Done"]);
@@ -273,7 +273,7 @@ class StoreController extends Controller
 
     public function setRequisition(Request $request){
         $insertArray = [];
-        $getUser = $request->user;
+        $getUser = Auth::user()->id;
 
         $items = $request->itemid;
 

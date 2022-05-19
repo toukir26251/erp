@@ -60,7 +60,23 @@ export default {
                     label: 'Status',
                     name: 'status',
                     orderable: true,
-                },{
+                },
+                {
+                    label: 'Requested By',
+                    name: 'user.name',
+                    orderable: true,
+                },
+                {
+                    label: 'Approved By',
+                    name: 'approved_by_user.name',
+                    orderable: true,
+                },
+                {
+                    label: 'Done By',
+                    name: 'done_by_user.name',
+                    orderable: true,
+                },
+                {
                     label: 'Action',
                     name: 'Edit',
                     filterable: false,

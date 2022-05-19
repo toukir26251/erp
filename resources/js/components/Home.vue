@@ -8,7 +8,7 @@
                             <i class="fa fa-th" aria-hidden="true"></i>
                         </div>
                         <div class="col-md-9">
-                            <h5>Total Active Items (Count)</h5>
+                            <h5>Total Received Items (Count)</h5>
                             <h2>{{dashdata.total_items}}</h2>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                             <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         </div>
                         <div class="col-md-9">
-                            <h5>Total Store Received (BTD)</h5>
+                            <h5>Total Store Received (BDT)</h5>
                             <h2>{{dashdata.total_store_receive}}</h2>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             <i class="fa fa-dollar" aria-hidden="true"></i>
                         </div>
                         <div class="col-md-9">
-                            <h5>Total Recuisition Amount</h5>
+                            <h5>Total Requisition Amount (BDT)</h5>
                             <h2>{{dashdata.total_recusition_amount}}</h2>
                         </div>
                     </div>
@@ -69,10 +69,10 @@ export default {
     data(){
         return {
             dashdata:{
-                total_items: 10291,
-                total_store_receive : 121232311,
-                total_recuisitions : 12312,
-                total_recusition_amount : 12322121
+                total_items: 0,
+                total_store_receive : 0,
+                total_recuisitions : 0,
+                total_recusition_amount : 0
             }
         }
     },
@@ -86,7 +86,11 @@ export default {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(response=>{
-                this.categories = response.data
+                // console.log(respo);
+                this.dashdata.total_items = response.data.data.total_item
+                this.dashdata.total_store_receive = response.data.data.total_rec_amount
+                this.dashdata.total_recuisitions = response.data.data.total_req
+                this.dashdata.total_recusition_amount = response.data.data.total_req_amount
             }).catch(error=>{
                 console.log(error)
                 this.categories = []
