@@ -190,7 +190,7 @@ var render = function () {
             _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-9" }, [
-              _c("h5", [_vm._v("Total Recuisition (Count)")]),
+              _c("h5", [_vm._v("Total Requisition (Count)")]),
               _vm._v(" "),
               _c("h2", [_vm._v(_vm._s(_vm.dashdata.total_recuisitions))]),
             ]),

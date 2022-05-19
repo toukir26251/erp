@@ -38,7 +38,7 @@
                             <i class="fa fa-list" aria-hidden="true"></i>
                         </div>
                         <div class="col-md-9">
-                            <h5>Total Recuisition (Count)</h5>
+                            <h5>Total Requisition (Count)</h5>
                             <h2>{{dashdata.total_recuisitions}}</h2>
                         </div>
                     </div>
